@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ClubMembershipModels">
+  <DataContextMoniker Name="/ClubMembershipModelsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="b33d7a2f-9a4d-46a0-9f1c-717f8dbdd068" absoluteBounds="2.5, 4.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ClubMembershipModelsDataContext/Announcement" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4d46e082-7a22-4679-9f16-de0ae2b06625" absoluteBounds="2.5149999999999997, 5.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="34ca8f4e-f904-4903-b046-46bcbc8f3bed" absoluteBounds="2.375, 1.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ClubMembershipModelsDataContext/CodeSnippet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b9c664e9-90c1-4cd4-8db4-aac74bc0a008" absoluteBounds="2.3900000000000006, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bd8360c9-d001-4e3a-af54-61c36336bd16" absoluteBounds="5.875, 1.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ClubMembershipModelsDataContext/Member" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c2acc1d8-9fd3-4586-87fc-35fb22b828ba" absoluteBounds="5.89, 2.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.875 : 2.63544840494792); (4.375 : 2.63544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ClubMembershipModelsDataContext/Member/Member_CodeSnippet" />
+      <nodes>
+        <classShapeMoniker Id="bd8360c9-d001-4e3a-af54-61c36336bd16" />
+        <classShapeMoniker Id="34ca8f4e-f904-4903-b046-46bcbc8f3bed" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="12497d05-e731-4b0f-8edf-57f28701ad60" absoluteBounds="5.75, 4.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ClubMembershipModelsDataContext/Membership" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5687a52a-a4cf-4943-a375-f95e359a5bd8" absoluteBounds="5.765, 5.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.8125 : 3.7131982421875); (6.8125 : 4.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ClubMembershipModelsDataContext/Member/Member_Membership" />
+      <nodes>
+        <classShapeMoniker Id="bd8360c9-d001-4e3a-af54-61c36336bd16" />
+        <classShapeMoniker Id="12497d05-e731-4b0f-8edf-57f28701ad60" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="25fdcb61-65ab-4022-b563-a346f146f9a2" absoluteBounds="8.75, 3.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ClubMembershipModelsDataContext/MembershipType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3b255626-7661-47bf-8773-7bda317733d9" absoluteBounds="8.765, 4.2100000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.75 : 4.97679768880208); (7.75 : 4.97679768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ClubMembershipModelsDataContext/MembershipType/MembershipType_Membership" />
+      <nodes>
+        <classShapeMoniker Id="25fdcb61-65ab-4022-b563-a346f146f9a2" />
+        <classShapeMoniker Id="12497d05-e731-4b0f-8edf-57f28701ad60" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

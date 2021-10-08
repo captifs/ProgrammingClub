@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="clubmembership" Class="ClubMembershipModelsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\clubmembership.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="clubmembershipConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Announcements" Member="Announcements">
+    <Type Name="Announcement">
+      <Column Name="IDAnnouncement" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ValidFrom" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ValidTo" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="EventDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tags" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CodeSnippets" Member="CodeSnippets">
+    <Type Name="CodeSnippet">
+      <Column Name="IDCodeSnippet" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentCode" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IDMember" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Revision" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_CodeSnippet" Member="Member" ThisKey="IDMember" OtherKey="IDMember" Type="Member" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Members" Member="Members">
+    <Type Name="Member">
+      <Column Name="IDMember" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Resume" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Member_CodeSnippet" Member="CodeSnippets" ThisKey="IDMember" OtherKey="IDMember" Type="CodeSnippet" />
+      <Association Name="Member_Membership" Member="Memberships" ThisKey="IDMember" OtherKey="IDMember" Type="Membership" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Memberships" Member="Memberships">
+    <Type Name="Membership">
+      <Column Name="IDMembership" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDMember" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDMembershipType" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_Membership" Member="Member" ThisKey="IDMember" OtherKey="IDMember" Type="Member" IsForeignKey="true" />
+      <Association Name="MembershipType_Membership" Member="MembershipType" ThisKey="IDMembershipType" OtherKey="IDMembershipType" Type="MembershipType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MembershipTypes" Member="MembershipTypes">
+    <Type Name="MembershipType">
+      <Column Name="IDMembershipType" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="SubscriptionLengthInMonths" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MembershipType_Membership" Member="Memberships" ThisKey="IDMembershipType" OtherKey="IDMembershipType" Type="Membership" />
+    </Type>
+  </Table>
+</Database>
