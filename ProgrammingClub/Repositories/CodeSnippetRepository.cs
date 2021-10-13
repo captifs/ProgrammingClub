@@ -57,6 +57,12 @@ namespace ProgrammingClub.Repositories
             
 
         }
+
+        public CodeSnippetModel GetCodeSnippetById(Guid id)
+        {
+            return MapDbObjectToModel(dbContext.CodeSnippets.FirstOrDefault(code => code.IDCodeSnippet == id));
+        }
+
         public List<CodeSnippetModel> GetAll()
         {
             List<CodeSnippetModel> codeSnippets = new List<CodeSnippetModel>();
@@ -78,6 +84,18 @@ namespace ProgrammingClub.Repositories
             codeSnippetModel.IDCodeSnippet = Guid.NewGuid();
             dbContext.CodeSnippets.InsertOnSubmit(MapModeltoDbObject(codeSnippetModel));
             dbContext.SubmitChanges();
+        }
+
+        public void DeleteCodeSnippet(Guid id)
+        {
+            CodeSnippet codeSnippetToBeDeleted = dbContext.CodeSnippets.
+                FirstOrDefault(code => code.IDCodeSnippet == id);
+            if (codeSnippetToBeDeleted != null)
+            {
+                dbContext.CodeSnippets.DeleteOnSubmit(codeSnippetToBeDeleted);
+                dbContext.SubmitChanges();
+
+            }
         }
 
         public void UpdateCodeSnippet(CodeSnippetModel codeSnippetModel)

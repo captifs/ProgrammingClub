@@ -16,13 +16,7 @@
         <h4>AnnouncementModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDAnnouncement, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IDAnnouncement, new { htmlAttributes = new { @class = "form-control", @readOnly= "true" } })
-                @Html.ValidationMessageFor(model => model.IDAnnouncement, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.ValidFrom, htmlAttributes: new { @class = "control-label col-md-2" })

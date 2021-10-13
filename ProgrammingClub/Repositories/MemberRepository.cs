@@ -21,6 +21,32 @@ namespace ProgrammingClub.Repositories
             this.dbContext = dbContext;
         }
 
+        public List<MemberModel> GetAllMembers()
+        {
+            List<MemberModel> membersLists = new List<MemberModel>();
+            foreach ( var dbMember in dbContext.Members)
+            {
+                membersLists.Add(MapDbObjectToModel(dbMember));
+            }
+            return membersLists;
+        }
+
+        private MemberModel MapDbObjectToModel(Member member)
+        {
+            MemberModel memberModel = new MemberModel();
+            if (memberModel != null)
+            {
+                memberModel.IDMember = member.IDMember;
+                memberModel.Name = member.Name;
+                memberModel.Title = member.Title;
+                memberModel.Position = member.Position;
+                memberModel.Description = member.Description;
+                memberModel.Resume = member.Resume;
+                return memberModel;
+            }
+            return null;
+        }
+
         public MemberCodeSnippetsViewModel GetMemberCodeSnippets(Guid memberID)
         {
             MemberCodeSnippetsViewModel memberCodeSnippetsViewModel = new MemberCodeSnippetsViewModel();
@@ -43,6 +69,61 @@ namespace ProgrammingClub.Repositories
                 }
             }
             return memberCodeSnippetsViewModel;
+        }
+
+        public void DeleteMember(Guid id)
+        {
+            Member memberToBeDeleted = dbContext.Members.
+                FirstOrDefault(mem => mem.IDMember == id);
+            if (memberToBeDeleted != null)
+            {
+                dbContext.Members.DeleteOnSubmit(memberToBeDeleted);
+                dbContext.SubmitChanges();
+            }
+        }
+
+        public void UpdateMember(MemberModel memberModel)
+        {
+            Member existingMember = dbContext.Members.
+                FirstOrDefault(x => x.IDMember == memberModel.IDMember);
+            if (existingMember != null)
+            {
+                existingMember.IDMember = memberModel.IDMember;
+                existingMember.Name = memberModel.Name;
+                existingMember.Title = memberModel.Title;
+                existingMember.Position = memberModel.Position;
+                existingMember.Description = memberModel.Description;
+                existingMember.Resume = memberModel.Resume;
+                dbContext.SubmitChanges();
+            }
+        }
+
+        public MemberModel GetMemberById(Guid id)
+        {
+            return MapDbObjectToModel(dbContext.Members.FirstOrDefault(mem => mem.IDMember == id));
+        }
+
+        public void InsertMember(MemberModel memberModel)
+        {
+            memberModel.IDMember = Guid.NewGuid();
+            dbContext.Members.InsertOnSubmit(MapModelToDbObject(memberModel));
+            dbContext.SubmitChanges();
+        }
+
+        private Member MapModelToDbObject(MemberModel memberModel)
+        {
+            Member dbMember = new Member();
+            if (memberModel != null)
+            {
+                dbMember.IDMember = memberModel.IDMember;
+                dbMember.Name = memberModel.Name;
+                dbMember.Title = memberModel.Title;
+                dbMember.Position = memberModel.Position;
+                dbMember.Description = memberModel.Description;
+                dbMember.Resume = memberModel.Resume;
+                return dbMember;
+            }
+            return null;
         }
     }
 }

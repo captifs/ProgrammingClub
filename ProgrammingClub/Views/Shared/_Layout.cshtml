@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - My First ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -20,10 +20,12 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav color-me">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Announcements", "Index", "Announcements")</li>
+                    <li>@Html.ActionLink("Announcement", "Index", "Announcements")</li>
                     <li>@Html.ActionLink("MembershipType", "Index", "MembershipType")</li>
+                    <li>@Html.ActionLink("Member", "Index", "Member")</li>
+                    <li>@Html.ActionLink("CodeSnippet", "Index", "CodeSnippet")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

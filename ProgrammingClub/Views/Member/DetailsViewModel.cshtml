@@ -1,0 +1,58 @@
+﻿@model ProgrammingClub.Models.ViewModels.MemberCodeSnippetsViewModel
+
+@{
+    ViewBag.Title = "DetailsViewModel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailsViewModel</h2>
+
+<div>
+    <h4>MemberCodeSnippetsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+    </dl>
+</div>
+@foreach(var item in Model.CodeSnippets)
+            {
+<div style="border: 2px solid blue ">
+    <p>
+        @Html.DisplayFor(modelItem => item.Title)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.ContentCode)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.Revision)
+    </p>
+
+</div>
+            }
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

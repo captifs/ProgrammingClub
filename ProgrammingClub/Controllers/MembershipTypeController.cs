@@ -35,6 +35,7 @@ namespace ProgrammingClub.Controllers
 
         // POST: MembershipType/Create
         [HttpPost]
+        [Authorize(Roles = "User, Admin ")]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -84,6 +85,7 @@ namespace ProgrammingClub.Controllers
 
         // POST: MembershipType/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id, FormCollection collection)
         {
             try

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProgrammingClub.Models.CodeSnippetModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCodeSnippet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContentCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDMember)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Revision)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCodeSnippet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContentCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDMember)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Revision)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.IDCodeSnippet  }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IDCodeSnippet }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IDCodeSnippet })
+        </td>
+    </tr>
+}
+
+</table>
