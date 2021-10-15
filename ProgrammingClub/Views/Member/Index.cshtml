@@ -8,7 +8,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("User,Admin") || User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -54,9 +57,12 @@
             @Html.DisplayFor(modelItem => item.Resume)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDMember  }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.IDMember }) |
             @Html.ActionLink("Details", "DetailsViewModel", new { id = item.IDMember }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IDMember })
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDMember })
+            }
         </td>
     </tr>
 }

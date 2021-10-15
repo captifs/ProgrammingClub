@@ -8,7 +8,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("User,Admin") || User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -42,9 +45,12 @@
             @Html.DisplayFor(modelItem => item.SubscriptionLengthInMonths)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDMembershipType  }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.IDMembershipType }) |
             @Html.ActionLink("Details", "Details", new { id = item.IDMembershipType }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IDMembershipType })
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDMembershipType })
+            }
         </td>
     </tr>
 }
